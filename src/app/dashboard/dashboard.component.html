@@ -1,0 +1,33 @@
+<div class="flex-row p-2">
+  <button type="button" class="btn btn-primary" (click)="showContactForm()">Add new contact +</button>
+</div>
+
+<div class="p-2">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Vorname</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Update</th>
+      <th scope="col">delete</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let contact of contacts; let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{contact.firstName}}</td>
+      <td>{{contact.lastName}}</td>
+      <td>{{contact.email}}</td>
+      <td (click)="showContactForm()">Update</td>
+
+      <td (click)="deleteContactFromList(i)" class="cursor"> X </td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-dialog *ngIf="!show_add_form" (newContact)="addNewContact($event)" (disable)="showContactForm($event)"></app-dialog>
